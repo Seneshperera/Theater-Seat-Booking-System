@@ -1,39 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  // State to handle mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <nav className="bg-white/10 backdrop-blur-xl border-b border-white/20 py-2 px-4 shadow-lg fixed w-full z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-xl font-bold flex items-center gap-2">
-          <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Movie Theater</span>
+      <header className="flex items-center justify-between px-6 py-4 bg-black bg-opacity-70">
+        {/* Logo with link to home */}
+        <Link to="/" className="flex items-center space-x-1">
+          <span className="text-yellow-400 font-bold text-xl">Cine</span>
+          <span className="text-white font-bold text-xl">Max</span>
+          <span className="text-white text-xl">.lk</span>
         </Link>
         
-        <div className="flex items-center gap-3">
-          <Link 
-            to="/" 
-            className="relative px-3 py-1.5 text-black text-sm rounded-xl hover:bg-white/15 transition-all duration-300 overflow-hidden group"
-          >
-            <span className="relative z-10">Home</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></span>
-          </Link>
-          
-          <Link 
-            to="/login" 
-            className="relative px-4 py-1.5 text-black text-sm rounded-xl border border-white/30 hover:bg-white/15 transition-all duration-300 overflow-hidden group"
-          >
-            <span className="relative z-10">Login</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></span>
-          </Link>
-          
-          <Link 
-            to="/register" 
-            className="relative px-4 py-1.5 text-white text-sm rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
-          >
-            Register
-          </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-6 text-white text-sm font-normal">
+          <Link to="/" className="hover:underline text-white">Home</Link>
+          <Link to="/about" className="hover:underline text-white">About</Link>
+          <Link to="/Home" className="hover:underline text-white">Movies</Link>
+        </nav>
+        
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center space-x-4 text-white text-sm font-normal">
+          <button aria-label="Language" className="flex items-center space-x-1 hover:underline">
+            <i className="fas fa-globe"></i>
+            <span>EN</span>
+          </button>
+          <Link to="/contact" className="hover:underline text-white">Contact Sales</Link>
+          <Link to="/login" className="hover:underline text-white">Login</Link>
+          <Link to="/signup" className="bg-yellow-400 text-black rounded-full px-5 py-2 text-sm font-semibold hover:bg-yellow-500 transition">Sign up free →</Link>
         </div>
-      </div>
+        
+        {/* Mobile menu button */}
+        <button 
+          className="md:hidden text-white" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <span className="text-xl">✕</span>
+          ) : (
+            <span className="text-xl">☰</span>
+          )}
+        </button>
+      </header>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-black bg-opacity-95 px-6 py-4">
+          <nav className="flex flex-col space-y-4 text-white">
+            <Link to="/" className="hover:underline text-white py-2">Home</Link>
+            <Link to="/about" className="hover:underline text-white py-2">About</Link>
+            <Link to="/Home" className="hover:underline text-white py-2">Movies</Link>
+            <Link to="/contact" className="hover:underline text-white py-2">Contact Sales</Link>
+            <Link to="/login" className="hover:underline text-white py-2">Login</Link>
+            <Link to="/signup" className="bg-yellow-400 text-black rounded-full px-5 py-2 text-sm font-semibold text-center">Sign up free →</Link>
+          </nav>
+        </div>
+      )}
     </nav>
   );
 };
