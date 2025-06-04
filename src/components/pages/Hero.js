@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import frameImage from '../../assets/bg1.png';
-
+import ReactPlayer from 'react-player';
 
 const Hero = () => {
+  const [showTrailer, setShowTrailer] = useState(false);
+
   return (
     <div className="relative min-h-screen bg-black pt-20">
+      {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <img
           src={frameImage} 
@@ -13,8 +16,6 @@ const Hero = () => {
           loading="lazy"
         />
       </div>
-
-      
 
       <main className="px-6 pt-12 max-w-7xl mx-auto">
         <section className="max-w-4xl text-white">
@@ -39,7 +40,13 @@ const Hero = () => {
             <span className="text-yellow-400 cursor-pointer"> See more</span>
           </p>
           <div className="flex space-x-4 mb-12">
-            <button className="border border-gray-500 text-gray-300 text-sm rounded px-4 py-2 hover:border-white hover:text-white transition">
+            <button 
+              onClick={() => setShowTrailer(true)}
+              className="flex items-center border border-gray-500 text-gray-300 text-sm rounded px-4 py-2 hover:border-white hover:text-white transition"
+            >
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M6.3 2.8L14.8 10l-8.5 7.2c-.6.5-1.5.4-2-.2s-.4-1.5.2-2L11 10 4.5 5c-.6-.5-.7-1.4-.2-2s1.4-.7 2-.2z"/>
+              </svg>
               Watch trailer
             </button>
             <button className="bg-yellow-400 text-black text-sm rounded px-4 py-2 font-semibold hover:bg-yellow-500 transition">
@@ -47,6 +54,27 @@ const Hero = () => {
             </button>
           </div>
         </section>
+
+        {/* Trailer Modal */}
+        {showTrailer && (
+          <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+            <div className="relative w-full max-w-4xl">
+              <button 
+                onClick={() => setShowTrailer(false)}
+                className="absolute -top-10 right-0 text-white text-2xl hover:text-yellow-400"
+              >
+                ✕
+              </button>
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=bOz69Hgk8RY" 
+                width="100%"
+                height="100%"
+                controls={true}
+                playing={true} 
+              />
+            </div>
+          </div>
+        )}
 
         <section className="flex space-x-4 overflow-x-auto pb-6 -mx-6 px-6">
           {[1, 2, 3, 4, 5, 6, 7].map((index) => (

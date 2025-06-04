@@ -24,7 +24,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 ">
+    <div className="bg-gradient-to-br from-yellow-400 via-black to-gray-900 container mx-auto pt-32 ">
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold mb-6 text-center">Create an Account</h1>
         <form onSubmit={handleSubmit}>
@@ -78,13 +78,13 @@ const Register = () => {
           </div>
           <button 
             type="submit" 
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            className="w-full bg-yellow-400 text-white py-2 px-4 rounded-md hover:bg-yellow-600"
           >
             Register
           </button>
         </form>
         <p className="mt-4 text-center">
-          Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login here</Link>
+          Already have an account? <Link to="/login" className="text-Yellow-400 hover:underline">Login here</Link>
         </p>
       </div>
     </div>
