@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="relative min-h-screen bg-black pt-20">
       <div className="absolute inset-0 -z-10">
         <img
-          src={frameImage} /* Replace with local image path */
+          src={frameImage} 
           alt="Movie wall with characters from a film, slightly darkened"
           className="w-full h-full object-cover brightness-50"
           loading="lazy"

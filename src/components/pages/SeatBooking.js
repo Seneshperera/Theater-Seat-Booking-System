@@ -12,7 +12,7 @@ const SeatBooking = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedSeats, setSelectedSeats] = useState([]);
   
-  // Load movie data
+  
   useEffect(() => {
     const foundMovie = movies.find(m => m.id === parseInt(movieId));
     if (foundMovie) {
@@ -20,7 +20,7 @@ const SeatBooking = () => {
     }
   }, [movieId]);
 
-  // Sample booked seats - in a real app, you'd get this from your API
+
   const bookedSeats = [
     { row: 0, col: 3 },
     { row: 0, col: 4 },
@@ -73,14 +73,14 @@ const SeatBooking = () => {
 
   if (!movie) {
     return (
-      <div className="container mx-auto py-8 text-center">
+      <div className="container mx-auto py-8 pt-20 text-center">
         <p>Loading movie details...</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto py-8 px-4 ">
       <MovieDetails movie={movie} />
 
       <div className="bg-white rounded-lg shadow-md p-6">

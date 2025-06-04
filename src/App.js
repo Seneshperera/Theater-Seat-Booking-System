@@ -7,6 +7,10 @@ import Register from './components/pages/Register';
 import SeatBooking from './components/pages/SeatBooking';
 import Confirmation from './components/pages/Confirmation';
 import Hero from './components/pages/Hero';
+import Snack from './components/pages/Snack';
+import Movies from './components/pages/Movies';
+import About from './components/pages/About';
+import Contact from './components/pages/Contact';
 
 function App() {
   return (
@@ -21,6 +25,11 @@ function App() {
             <Route path="/booking/:movieId" element={<SeatBooking />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/hero" element={<Hero />} />
+            <Route path="/Snack" element={<Snack />} />
+            <Route path="/Movies" element={<Movies />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Contact" element={<Contact />} />
+            
           </Routes>
         </main>
       </div>

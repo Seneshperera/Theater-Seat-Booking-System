@@ -17,14 +17,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Login submitted:', formData);
-    // Here you would normally connect to your backend
+    // Backend
   };
 
   return (
-    <div className="container mx-auto  bg-black pt-10">
-    {/* Main flex container */}
+    <div className="container mx-auto bg-gradient-to-br from-yellow-400 via-black to-gray-900 pt-32">
+   
     <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-4 pt-20">
-      {/* Left side: Login form */}
+      
       <div className="w-full md:w-1/2 max-w-md">
         <div className="bg-white p-8 rounded-lg shadow-md">
           <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
@@ -66,7 +66,6 @@ const Login = () => {
         </div>
       </div>
       
-      {/* Right side: Image */}
       <div className="w-full  bg-black md:w-1/2 flex justify-center">
         <div className="bg-gray-200 rounded-lg overflow-hidden shadow-md">
           <img 

@@ -19,7 +19,8 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Register submitted:', formData);
-    // Here you would normally connect to your backend
+    // backend
+    
   };
 
   return (
