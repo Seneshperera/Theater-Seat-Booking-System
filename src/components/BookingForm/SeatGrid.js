@@ -67,7 +67,7 @@ const SeatGrid = ({ rows = 6, cols = 10, bookedSeats = [], onSeatSelection }) =>
 
       <div className="mt-6 flex justify-center space-x-6">
         <div className="flex items-center">
-          <div className="w-4 h-4 bg-blue-400 rounded mr-2"></div>
+          <div className="w-4 h-4 bg-yellow-400 rounded mr-2"></div>
           <span>Available</span>
         </div>
         <div className="flex items-center">

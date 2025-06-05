@@ -73,14 +73,14 @@ const SeatBooking = () => {
 
   if (!movie) {
     return (
-      <div className="container mx-auto py-8 pt-20 text-center">
+      <div className="bg-gradient-to-br from-yellow-400 via-black to-gray-900 container mx-auto py-8 pt-32 text-center">
         <p>Loading movie details...</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-8 px-4 ">
+    <div className=" bg-gradient-to-br from-yellow-400 via-black to-gray-900 container mx-auto pt-32 px-4 ">
       <MovieDetails movie={movie} />
 
       <div className="bg-white rounded-lg shadow-md p-6">
@@ -134,7 +134,7 @@ const SeatBooking = () => {
               
               <div className="flex justify-between items-center mb-6">
                 <span className="text-lg">Total Price:</span>
-                <span className="text-xl font-bold text-blue-600">
+                <span className="text-xl font-bold text-yellow-600">
                   ${(selectedSeats.length * movie.price).toFixed(2)}
                 </span>
               </div>
@@ -144,7 +144,7 @@ const SeatBooking = () => {
                 disabled={selectedSeats.length === 0}
                 className={`w-full py-3 px-4 rounded-md text-white font-medium 
                   ${selectedSeats.length > 0 
-                    ? 'bg-blue-500 hover:bg-blue-600' 
+                    ? 'bg-yellow-400 hover:bg-yellow-600' 
                     : 'bg-gray-400 cursor-not-allowed'}`}
               >
                 Confirm Booking

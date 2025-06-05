@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import frameImage from '../../assets/bg1.png';
+import frameImage from '../assets/bg1.png';
 import ReactPlayer from 'react-player';
+
+console.log('Image path:', frameImage);
 
 const Hero = () => {
   const [showTrailer, setShowTrailer] = useState(false);

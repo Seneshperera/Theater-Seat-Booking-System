@@ -24,7 +24,7 @@ const Confirmation = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className=" bg-gradient-to-br from-yellow-400 via-black to-gray-900 container mx-auto pt-32 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
         <div className="text-center mb-8">
           <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">✓</div>
@@ -73,7 +73,7 @@ const Confirmation = () => {
           <button className="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300">
             Print Ticket
           </button>
-          <Link to="/" className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
+          <Link to="/" className="bg-yellow-400 text-white px-6 py-2 rounded-md hover:bg-yellow-600">
             Back to Home
           </Link>
         </div>
