@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import frameImage from '../assets/bg1.png';
+import frameImage from '../../assets/bg1.png'; // Adjust the path as necessary
+import walampuri from '../../assets/walampuri.jpg';
+import mip from '../../assets/mip.jpeg';
+import jaguar from '../../assets/jaguar.jpg';
+import deva from '../../assets/deva.png';
+import companion from '../../assets/companion.jpg';
 import ReactPlayer from 'react-player';
 
 console.log('Image path:', frameImage);
+
+const sliderImages = [walampuri, mip, jaguar, deva, companion, walampuri, mip];
 
 const Hero = () => {
   const [showTrailer, setShowTrailer] = useState(false);
@@ -10,7 +17,7 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen bg-black pt-20">
       {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 ">
         <img
           src={frameImage} 
           alt="Movie wall with characters from a film, slightly darkened"
@@ -19,7 +26,7 @@ const Hero = () => {
         />
       </div>
 
-      <main className="px-6 pt-12 max-w-7xl mx-auto">
+      <main className="relative z-10 px-6 pt-12 max-w-7xl mx-auto">
         <section className="max-w-4xl text-white">
           <h1 className="text-6xl leading-tight mb-2 font-bold" style={{ fontFamily: "'Baloo 2', cursive" }}>
             වාලම්පුරි
@@ -78,12 +85,12 @@ const Hero = () => {
           </div>
         )}
 
-        <section className="flex space-x-4 overflow-x-auto pb-6 -mx-6 px-6">
-          {[1, 2, 3, 4, 5, 6, 7].map((index) => (
+        <section className="flex space-x-10 overflow-x-auto pb-6 -mx-6 px-6">
+          {sliderImages.map((src, index) => (
             <img
               key={index}
-              src={`/api/placeholder/120/180?text=Movie${index}`}
-              alt={`Movie poster ${index}`}
+              src={src}
+              alt={`Movie poster ${index + 1}`}
               className="w-28 rounded-lg flex-shrink-0"
               loading="lazy"
               width={120}
@@ -93,7 +100,7 @@ const Hero = () => {
         </section>
       </main>
     </div>
-  );
-};
+  )
+}
 
 export default Hero;

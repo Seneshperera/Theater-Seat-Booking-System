@@ -6,7 +6,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white/10 backdrop-blur-xl border-b border-white/20 py-2 px-4 shadow-lg fixed w-full z-50">
+    <nav className="bg-white/10 backdrop-blur-md border-b border-white/20 shadow-lg fixed w-full z-50">
       <header className="flex items-center justify-between px-6 py-4 bg-black bg-opacity-70">
         {/* Logo with link to home */}
         <Link to="/" className="flex items-center space-x-1">

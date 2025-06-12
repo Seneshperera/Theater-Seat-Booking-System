@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Plus, Minus, ShoppingCart } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { SnackCartContext } from '../../context/SnackCartContext';
 
 const MovieSnacks = () => {
-  
-  const [cart, setCart] = useState([]);
+  const { cart, addToCart, removeFromCart, getTotalPrice, getItemQuantity } = useContext(SnackCartContext);
+  const navigate = useNavigate();
 
   // List of snacks (you can replace this with API data)
   const snacks = [
@@ -59,49 +59,10 @@ const MovieSnacks = () => {
     }
   ];
 
-  // Function to add item to cart
-  const addToCart = (snack) => {
-    const existingItem = cart.find(item => item.id === snack.id);
-    
-    if (existingItem) {
-      // If item already exists, increase quantity
-      setCart(cart.map(item => 
-        item.id === snack.id 
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
-    } else {
-      // If new item, add to cart with quantity 1
-      setCart([...cart, { ...snack, quantity: 1 }]);
-    }
-  };
-
-  // Function to remove item from cart
-  const removeFromCart = (snackId) => {
-    const existingItem = cart.find(item => item.id === snackId);
-    
-    if (existingItem.quantity === 1) {
-      // If quantity is 1, remove item completely
-      setCart(cart.filter(item => item.id !== snackId));
-    } else {
-      // If quantity > 1, decrease quantity
-      setCart(cart.map(item => 
-        item.id === snackId 
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      ));
-    }
-  };
-
-  // Function to calculate total price
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
-  };
-
-  // Function to get quantity of specific item in cart
-  const getItemQuantity = (snackId) => {
-    const item = cart.find(item => item.id === snackId);
-    return item ? item.quantity : 0;
+  const handleAddSnacksToOrder = () => {
+    // Navigate to seat booking page or any other logic
+    // For example, navigate to home or booking page
+    navigate('/'); // Adjust the path as needed
   };
 
   return (
@@ -190,12 +151,15 @@ const MovieSnacks = () => {
           <div className="border-t pt-4">
             <div className="flex justify-between items-center text-xl font-bold">
               <span>Total:</span>
-              <span className="text-yellow-400">${getTotalPrice()}</span>
+              <span className="text-yellow-400">${getTotalPrice().toFixed(2)}</span>
             </div>
           </div>
           
           {/* Add to Main Order Button */}
-          <button className="w-full bg-yellow-400 text-white py-3 rounded-md font-bold text-lg mt-4 hover:bg-yellow-100">
+          <button 
+            onClick={handleAddSnacksToOrder}
+            className="w-full bg-yellow-400 text-white py-3 rounded-md font-bold text-lg mt-4 hover:bg-yellow-100"
+          >
             Add Snacks to My Order
           </button>
         </div>

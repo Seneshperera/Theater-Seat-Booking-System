@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const Register = () => {
     confirmPassword: ''
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -16,11 +18,34 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Register submitted:', formData);
-    // backend
-    
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.message);
+        navigate('/login');
+      } else {
+        alert('Registration failed: ' + data.message);
+      }
+    } catch (error) {
+      alert('An error occurred: ' + error.message);
+    }
   };
 
   return (
@@ -84,7 +109,7 @@ const Register = () => {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Already have an account? <Link to="/login" className="text-Yellow-400 hover:underline">Login here</Link>
+          Already have an account? <Link to="/login" className="text-yellow-400 hover:underline">Login here</Link>
         </p>
       </div>
     </div>

@@ -7,7 +7,6 @@ const Confirmation = () => {
 
   if (!booking || !movie) {
     return (
-      
       <div className="container mx-auto py-16 px-4 text-center ">
         <h1 className="text-2xl font-bold mb-4">No booking information found</h1>
         <p className="mb-6">Please start a new booking</p>
@@ -52,6 +51,18 @@ const Confirmation = () => {
                 ).join(', ')}
               </p>
             </div>
+            {booking.snackOrder && booking.snackOrder.length > 0 && (
+              <div>
+                <p className="text-gray-500">Snacks</p>
+                <ul className="font-medium list-disc list-inside">
+                  {booking.snackOrder.map(item => (
+                    <li key={item.id}>
+                      {item.name} x{item.quantity} (${(item.price * item.quantity).toFixed(2)})
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div>
               <p className="text-gray-500">Total Amount</p>
               <p className="font-bold text-blue-600">${booking.totalPrice.toFixed(2)}</p>

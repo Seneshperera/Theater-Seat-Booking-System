@@ -11,6 +11,7 @@ import Snack from './components/pages/Snack';
 import Movies from './components/pages/Movies';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
+import Cart, { SnackCartContext } from './context/SnackCartContext';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
             <Route path="/Movies" element={<Movies />} />
             <Route path="/About" element={<About />} />
             <Route path="/Contact" element={<Contact />} />
-            
+            <Route path="/Cart" element={< SnackCartContext/>} />
           </Routes>
         </main>
       </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -14,10 +15,27 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login submitted:', formData);
-    // Backend
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Login successful! Welcome ' + data.username);
+        // Redirect or update UI accordingly
+        navigate('/');
+      } else {
+        alert('Login failed: ' + data.message);
+      }
+    } catch (error) {
+      alert('An error occurred: ' + error.message);
+    }
   };
 
   return (
@@ -61,7 +79,7 @@ const Login = () => {
             </button>
           </form>
           <p className="mt-4 text-center">
-            Don't have an account? <a href="/register" className="text-yellow-500 hover:underline">Register here</a>
+            Don't have an account? <Link to="/register" className="text-yellow-500 hover:underline">Register here</Link>
           </p>
         </div>
       </div>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SeatGrid from '../BookingForm/SeatGrid';
 import MovieDetails from '../BookingForm/MovieDetails';
 import { movies } from '../data/MovieData.js';
+import { SnackCartContext } from '../../context/SnackCartContext';
 
 const SeatBooking = () => {
   const { movieId } = useParams();
@@ -11,7 +12,7 @@ const SeatBooking = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedSeats, setSelectedSeats] = useState([]);
-  
+  const { getTotalPrice: getSnackTotalPrice, cart } = useContext(SnackCartContext);
   
   useEffect(() => {
     const foundMovie = movies.find(m => m.id === parseInt(movieId));
@@ -19,7 +20,6 @@ const SeatBooking = () => {
       setMovie(foundMovie);
     }
   }, [movieId]);
-
 
   const bookedSeats = [
     { row: 0, col: 3 },
@@ -54,13 +54,18 @@ const SeatBooking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    const snackTotal = getSnackTotalPrice();
+    const ticketTotal = selectedSeats.length * movie.price;
+    const totalPrice = ticketTotal + snackTotal;
+
     const bookingData = {
       movieId: movie.id,
       movieTitle: movie.title,
       date: selectedDate.toISOString().split('T')[0],
       time: selectedTime,
       seats: selectedSeats,
-      totalPrice: selectedSeats.length * movie.price
+      snackOrder: cart,
+      totalPrice: totalPrice
     };
     
     console.log('Booking data:', bookingData);
@@ -135,7 +140,7 @@ const SeatBooking = () => {
               <div className="flex justify-between items-center mb-6">
                 <span className="text-lg">Total Price:</span>
                 <span className="text-xl font-bold text-yellow-600">
-                  ${(selectedSeats.length * movie.price).toFixed(2)}
+                  ${(selectedSeats.length * movie.price + getSnackTotalPrice()).toFixed(2)}
                 </span>
               </div>
               

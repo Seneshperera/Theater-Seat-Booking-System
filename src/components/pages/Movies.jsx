@@ -1,52 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import wolfman from '../../assets/wolfman.png';
+import karatekid from '../../assets/karatekid.jpg';
+import avatar from '../../assets/avatar.jpg';
+import jaguar from '../../assets/jaguar.jpg';
+import deva from '../../assets/deva.png';
+import companion from '../../assets/companion.jpg';
 
 const Movies = () => {
   const ongoingMovies = [
     {
       id: 1,
-      title: "The Last Adventure",
-      image: "https://via.placeholder.com/300x450?text=The+Last+Adventure",
+      title: "Wolfman",
+      image: wolfman, // Use the imported image variable
       duration: "2h 15m",
       genre: "Action/Adventure",
       price: 12.99,
     },
     {
       id: 2,
-      title: "Midnight in Paris",
-      image: "https://via.placeholder.com/300x450?text=Midnight+in+Paris",
+      title: "The Karete Kid",
+      image: karatekid,
       duration: "1h 54m",
       genre: "Romance/Drama",
       price: 10.50,
     },
     {
       id: 3,
-      title: "Galaxy Warriors",
-      image: "https://via.placeholder.com/300x450?text=Galaxy+Warriors",
+      title: "Avatar",
+      image: avatar,
       duration: "2h 32m",
       genre: "Sci-Fi/Action",
       price: 14.99,
     },
     {
       id: 4,
-      title: "The Hidden Truth",
-      image: "https://via.placeholder.com/300x450?text=The+Hidden+Truth",
+      title: "Jaguar",
+      image: jaguar,
       duration: "1h 48m",
       genre: "Thriller/Mystery",
       price: 11.25,
     },
     {
       id: 5,
-      title: "Laugh Out Loud",
-      image: "https://via.placeholder.com/300x450?text=Laugh+Out+Loud",
+      title: "Deva",
+      image: deva,
       duration: "1h 42m",
       genre: "Comedy",
       price: 9.99,
     },
     {
       id: 6,
-      title: "Dark Shadows",
-      image: "https://via.placeholder.com/300x450?text=Dark+Shadows",
+      title: "Companion 2025",
+      image: companion,
       duration: "2h 05m",
       genre: "Horror",
       price: 12.50,
